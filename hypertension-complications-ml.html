@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can Machine Learning Predict Hypertension Complications? | Ali Refaie</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Ali Refaie<span>.</span></a>
+    <nav class="site">
+      <a href="index.html#work">Case Studies</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="index.html#work">&larr; All case studies</a></p>
+  <div class="cs-head">
+    <div class="meta">Health Research &middot; Machine Learning</div>
+    <h1>Can Machine Learning Predict Hypertension Complications Before They Appear?</h1>
+    <p class="role">Role: full project, from data cleaning through model building, tuning, and evaluation.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="num">517</div><div class="lbl">survey participants</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">complications predicted</div></div>
+    <div class="stat"><div class="num">0.97</div><div class="lbl">best F1-score (nephropathy)</div></div>
+  </div>
+
+  <div class="cs-body">
+    <h2>The problem</h2>
+    <p>The serious complications of hypertension, damage to the kidneys, nerves, eyes, and heart, often progress silently until they are hard to reverse. Routine checkups already collect the labs and history that could flag high-risk patients early. The question: can a model trained on that routine data predict who is heading for a complication, and which kind, before it clinically appears?</p>
+
+    <h2>The data</h2>
+    <p>517 adults surveyed in the Ramallah and Al-Bireh area, combining demographics, household and insurance details, lifestyle and quality-of-life questions, medications, and laboratory results (HbA1c, full lipid panel, kidney function, microalbumin, albumin-creatinine ratio). Each participant is labeled for four outcomes: retinopathy, neuropathy, nephropathy, and coronary artery disease. This cohort is related to the one in the diabetes case study, but the question here is different: prediction with machine learning rather than descriptive statistics.</p>
+
+    <h2>Methodology</h2>
+    <ul>
+      <li>Cleaned the raw survey export and handled missing lab values with statistical imputation rather than dropping incomplete records.</li>
+      <li>Framed the task two ways: a binary model (any complication vs none) and a multi-label model predicting each of the four complication types.</li>
+      <li>Trained logistic regression and random forest models per complication, then combined them in a hybrid setup that keeps whichever model performs best for each outcome.</li>
+      <li>Tuned the classification threshold from 0.50 down to 0.30, deliberately trading overall accuracy for sensitivity: in a screening context, missing an at-risk patient costs more than a false alarm.</li>
+      <li>Ranked feature importance to identify which clinical markers drive the predictions.</li>
+    </ul>
+
+    <h2>Results</h2>
+    <p>The hybrid model predicts nephropathy almost perfectly (F1 0.97, 96% accuracy, every true case caught), and at the tuned 0.30 threshold it detects 79% of neuropathy and 75% of retinopathy cases, up sharply from the default threshold. The strongest predictors are renal and metabolic markers: albumin-creatinine ratio, microalbumin, age, kidney function (GFR), and HbA1c, well ahead of lifestyle or sociodemographic variables. The practical takeaway: a cheap, routine urine test (ACR) carries most of the predictive signal, which makes early screening realistic in primary care.</p>
+
+
+    <div class="anon-note">The dataset is fully de-identified. No patient, clinic, or physician details appear on this site.</div>
+  </div>
+
+  <a class="back" href="index.html#work">&larr; Back to all case studies</a>
+</div>
+
+<footer class="site">
+  <div class="wrap"><p>&copy; 2026 Ali Refaie &middot; Hosted with GitHub Pages.</p></div>
+</footer>
+
+</body>
+</html>
